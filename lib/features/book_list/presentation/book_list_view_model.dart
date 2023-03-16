@@ -1,10 +1,11 @@
 import 'package:clean_framework/clean_framework.dart';
+import 'package:clean_flutter/features/book_list/domain/book_list_entity.dart';
 
 class BookListViewModel extends ViewModel {
-  const BookListViewModel({required this.id});
+  final BookListEntity bookListEntity;
 
-  final String id;
+  const BookListViewModel({required this.bookListEntity});
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [bookListEntity];
 }

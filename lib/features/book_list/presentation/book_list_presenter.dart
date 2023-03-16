@@ -16,6 +16,6 @@ class BookListPresenter extends Presenter<BookListViewModel, BookListUIOutput, B
     BookListUseCase useCase,
     BookListUIOutput output,
   ) {
-    return BookListViewModel(id: output.id);
+    return BookListViewModel(bookListEntity: output.bookList);
   }
 }

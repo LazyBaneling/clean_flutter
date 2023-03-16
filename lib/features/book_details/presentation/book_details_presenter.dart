@@ -16,6 +16,6 @@ class BookDetailsPresenter extends Presenter<BookDetailsViewModel, BookDetailsUI
     BookDetailsUseCase useCase,
     BookDetailsUIOutput output,
   ) {
-    return BookDetailsViewModel(id: output.id);
+    return BookDetailsViewModel(bookDetailsEntity: output.bookDetailsEntity);
   }
 }

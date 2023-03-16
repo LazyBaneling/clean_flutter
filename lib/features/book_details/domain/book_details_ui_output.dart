@@ -1,10 +1,11 @@
 import 'package:clean_framework/clean_framework.dart';
+import 'package:clean_flutter/features/book_details/domain/book_details_entity.dart';
 
 class BookDetailsUIOutput extends Output {
-  const BookDetailsUIOutput({required this.id});
+  final BookDetailsEntity bookDetailsEntity;
 
-  final String id;
+  const BookDetailsUIOutput({required this.bookDetailsEntity});
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [bookDetailsEntity];
 }

@@ -13,8 +13,22 @@ class BookListUI extends UI<BookListViewModel> {
   @override
   Widget build(BuildContext context, BookListViewModel viewModel) {
     return Scaffold(
-      body: Center(
-        child: Text(viewModel.id),
+      appBar: AppBar(
+        title: const Text('Book List'),
+      ),
+      body: ListView.builder(
+        itemCount: viewModel.bookListEntity.books.length,
+        itemBuilder: (context, index) {
+          final book = viewModel.bookListEntity.books[index];
+          return ListTile(
+            leading: book.coverImageUrl.isNotEmpty ? Image.network(book.coverImageUrl) : const Icon(Icons.book),
+            title: Text(book.title),
+            subtitle: Text(book.authors.join(', ')),
+            onTap: () {
+              // navigate to the book details
+            },
+          );
+        },
       ),
     );
   }

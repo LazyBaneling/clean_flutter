@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:clean_flutter/routing.dart';
 
 class CleanFlutterApp extends StatelessWidget {
-  const CleanFlutterApp({super.key});
+  const CleanFlutterApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

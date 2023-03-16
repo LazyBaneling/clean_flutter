@@ -5,21 +5,23 @@ import 'package:clean_flutter/providers.dart';
 import 'package:clean_framework_test/clean_framework_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../mock/data/test_book.dart';
+
 void main() {
   group('BookDetailsUseCase tests |', () {
     useCaseTest<BookDetailsUseCase, BookDetailsEntity, BookDetailsUIOutput>(
       'example',
       provider: bookDetailsUseCaseProvider,
       execute: (useCase) {
-        useCase.updateId('test');
+        useCase.updateBook(testBook);
       },
       expect: () => [
-        const BookDetailsUIOutput(id: 'test'),
+        const BookDetailsUIOutput(bookDetailsEntity: BookDetailsEntity(book: testBook)),
       ],
       verify: (useCase) {
         expect(
           useCase.debugEntity,
-          const BookDetailsEntity(id: 'test'),
+          const BookDetailsEntity(book: testBook),
         );
       },
     );

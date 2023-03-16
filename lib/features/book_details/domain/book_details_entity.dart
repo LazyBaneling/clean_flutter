@@ -1,15 +1,16 @@
 import 'package:clean_framework/clean_framework.dart';
+import 'package:clean_flutter/features/common/domain/book_entity.dart';
 
 class BookDetailsEntity extends Entity {
-  const BookDetailsEntity({this.id = ''});
+  final BookEntity book;
 
-  final String id;
-
-  @override
-  List<Object> get props => [id];
+  const BookDetailsEntity({required this.book});
 
   @override
-  BookDetailsEntity copyWith({String? id}) {
-    return BookDetailsEntity(id: id ?? this.id);
+  List<Object> get props => [book];
+
+  @override
+  BookDetailsEntity copyWith({BookEntity? book}) {
+    return BookDetailsEntity(book: book ?? this.book);
   }
 }
