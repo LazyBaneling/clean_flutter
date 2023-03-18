@@ -1,4 +1,5 @@
 import 'package:clean_framework/clean_framework.dart';
+
 import 'package:clean_flutter/features/index/domain/index_entity.dart';
 import 'package:clean_flutter/features/index/domain/index_ui_output.dart';
 import 'package:clean_flutter/features/index/external_interface/book_collection_gateway.dart';
@@ -10,8 +11,6 @@ class IndexUseCase extends UseCase<IndexEntity> {
           entity: const IndexEntity(),
           transformers: [
             IndexUIOutputTransformer(),
-            BookSearchInputTransformer(),
-            LastViewedBookInputTransformer(),
           ],
         );
 
@@ -56,47 +55,13 @@ class IndexUseCase extends UseCase<IndexEntity> {
   }
 }
 
-class BookSearchInput extends Input {
-  const BookSearchInput({required this.title});
-
-  final String title;
-}
-
 class IndexUIOutputTransformer extends OutputTransformer<IndexEntity, IndexUIOutput> {
   @override
   IndexUIOutput transform(IndexEntity entity) {
-    final filteredBooks = entity.books.where(
-      (book) {
-        final bookTitle = book.title.toLowerCase();
-        return bookTitle.contains(entity.bookTitleQuery.toLowerCase());
-      },
-    );
-
     return IndexUIOutput(
-      books: filteredBooks.toList(growable: false),
+      books: entity.books.toList(growable: false),
       status: entity.status,
       isRefresh: entity.isRefresh,
-      lastViewedBook: entity.lastViewedBook,
     );
-  }
-}
-
-class BookSearchInputTransformer extends InputTransformer<IndexEntity, BookSearchInput> {
-  @override
-  IndexEntity transform(IndexEntity entity, BookSearchInput input) {
-    return entity.copyWith(bookTitleQuery: input.title);
-  }
-}
-
-class LastViewedBookInput extends Input {
-  const LastViewedBookInput({required this.title});
-
-  final String title;
-}
-
-class LastViewedBookInputTransformer extends InputTransformer<IndexEntity, LastViewedBookInput> {
-  @override
-  IndexEntity transform(IndexEntity entity, LastViewedBookInput input) {
-    return entity.copyWith(lastViewedBook: input.title);
   }
 }

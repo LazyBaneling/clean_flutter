@@ -1,4 +1,5 @@
 import 'package:clean_framework/clean_framework.dart';
+
 import 'package:clean_flutter/features/index/domain/index_use_case.dart';
 import 'package:clean_flutter/features/index/external_interface/book_collection_gateway.dart';
 import 'package:clean_flutter/features/details/domain/book_details_entity.dart';

@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:clean_framework/clean_framework.dart';
+
 import 'package:clean_flutter/features/index/domain/index_entity.dart';
 import 'package:clean_flutter/features/index/domain/index_ui_output.dart';
 import 'package:clean_flutter/features/index/domain/index_use_case.dart';
 import 'package:clean_flutter/features/index/presentation/index_view_model.dart';
 import 'package:clean_flutter/providers.dart';
-import 'package:clean_framework/clean_framework.dart';
-import 'package:flutter/material.dart';
 
 class IndexPresenter extends Presenter<IndexViewModel, IndexUIOutput, IndexUseCase> {
   IndexPresenter({
@@ -21,12 +22,10 @@ class IndexPresenter extends Presenter<IndexViewModel, IndexUIOutput, IndexUseCa
   IndexViewModel createViewModel(IndexUseCase useCase, IndexUIOutput output) {
     return IndexViewModel(
       books: output.books,
-      onSearch: (query) => useCase.setInput(BookSearchInput(title: query)),
       onRefresh: () => useCase.fetchBooks(isRefresh: true),
       onRetry: useCase.fetchBooks,
       isLoading: output.status == IndexStatus.loading,
       hasFailedLoading: output.status == IndexStatus.failed,
-      lastViewedBook: output.lastViewedBook,
     );
   }
 

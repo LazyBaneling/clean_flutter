@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:clean_framework/clean_framework.dart';
+import 'package:clean_framework_router/clean_framework_router.dart';
+
 import 'package:clean_flutter/features/index/presentation/index_presenter.dart';
 import 'package:clean_flutter/features/index/presentation/index_view_model.dart';
 import 'package:clean_flutter/routing/routes.dart';
 import 'package:clean_flutter/widgets/book_card.dart';
-import 'package:clean_flutter/widgets/book_search_field.dart';
-import 'package:clean_framework_router/clean_framework_router.dart';
-import 'package:flutter/material.dart';
 
 class IndexUI extends UI<IndexViewModel> {
   IndexUI({Key? key}) : super(key: key);
@@ -27,9 +27,14 @@ class IndexUI extends UI<IndexViewModel> {
     } else {
       child = RefreshIndicator(
         onRefresh: viewModel.onRefresh,
-        child: ListView.builder(
-          prototypeItem: const SizedBox(height: 176), // 160 + 16
+        child: GridView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 16),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 0.6,
+          ),
           itemBuilder: (context, index) {
             final book = viewModel.books[index];
 
@@ -44,7 +49,6 @@ class IndexUI extends UI<IndexViewModel> {
                   queryParams: {'image': book.cover},
                 );
               },
-              heroTag: book.isbn,
             );
           },
           itemCount: viewModel.books.length,
@@ -59,8 +63,6 @@ class IndexUI extends UI<IndexViewModel> {
         titleTextStyle: textTheme.displaySmall!.copyWith(
           fontWeight: FontWeight.w300,
         ),
-        bottom:
-            viewModel.isLoading || viewModel.hasFailedLoading ? null : BookSearchField(onChanged: viewModel.onSearch),
       ),
       body: child,
     );

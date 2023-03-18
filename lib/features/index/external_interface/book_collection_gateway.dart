@@ -1,7 +1,8 @@
-import 'package:clean_flutter/core/book/hardcoded_isbns.dart';
 import 'package:clean_framework/clean_framework.dart';
+
 import 'package:clean_flutter/core/book/book_request.dart';
 import 'package:clean_flutter/core/book/book_success_response.dart';
+import 'package:clean_flutter/core/book/hardcoded_isbns.dart';
 
 class BookCollectionGateway extends Gateway<BookCollectionGatewayOutput, BookCollectionRequest, BookSuccessResponse,
     BookCollectionSuccessInput> {
@@ -60,12 +61,13 @@ class BookIdentity {
     final deserializer = Deserializer(json);
 
     return BookIdentity(
-      title: deserializer.getString('title'),
-      authors: deserializer.getList('authors', converter: (author) => author['name'] as String),
+      title: deserializer.getString('title', defaultValue: 'Unknown Title'),
+      authors: deserializer
+          .getList('authors', converter: (author) => author['name'] as String, defaultValue: ['Unknown Author']),
       isbn: isbnKey.substring(5), // Remove "ISBN:" prefix from the key
-      cover: deserializer.getMap('cover')['medium'],
-      publishDate: deserializer.getString('publish_date'),
-      numberOfPages: deserializer.getInt('number_of_pages'),
+      cover: deserializer.getMap('cover', defaultValue: {'medium': 'Not Provided'})['medium'],
+      publishDate: deserializer.getString('publish_date', defaultValue: 'Not Provided'),
+      numberOfPages: deserializer.getInt('number_of_pages', defaultValue: 0),
     );
   }
 }

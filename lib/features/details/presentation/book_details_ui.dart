@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:clean_framework/clean_framework.dart';
-import 'package:clean_flutter/features/details/domain/book_details_ui_output.dart';
+
 import 'package:clean_flutter/features/details/presentation/book_details_presenter.dart';
 import 'package:clean_flutter/features/details/presentation/book_details_view_model.dart';
-import 'package:flutter/material.dart';
+import 'package:clean_flutter/widgets/cover_image.dart';
 
 class BookDetailsUI extends UI<BookDetailsViewModel> {
   BookDetailsUI({super.key, required this.bookId});
@@ -26,13 +27,10 @@ class BookDetailsUI extends UI<BookDetailsViewModel> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (viewModel.cover != '')
-              Image.network(
-                viewModel.cover,
-                height: 200,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+            AspectRatio(
+              aspectRatio: 3 / 4,
+              child: CoverImage(imageUrl: viewModel.cover),
+            ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(

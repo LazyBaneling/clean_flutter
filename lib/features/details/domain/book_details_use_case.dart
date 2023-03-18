@@ -1,4 +1,5 @@
 import 'package:clean_framework/clean_framework.dart';
+
 import 'package:clean_flutter/features/details/domain/book_details_entity.dart';
 import 'package:clean_flutter/features/details/domain/book_details_ui_output.dart';
 import 'package:clean_flutter/features/details/external_interface/book_details_gateway.dart';

@@ -1,4 +1,3 @@
-
 class BookModel {
   BookModel({
     required this.title,

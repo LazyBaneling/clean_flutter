@@ -1,7 +1,8 @@
 import 'package:clean_framework/clean_framework.dart';
+import 'package:dio/dio.dart';
+
 import 'package:clean_flutter/core/book/book_request.dart';
 import 'package:clean_flutter/core/book/book_success_response.dart';
-import 'package:dio/dio.dart';
 
 class BookExternalInterface extends ExternalInterface<BookRequest, BookSuccessResponse> {
   BookExternalInterface({

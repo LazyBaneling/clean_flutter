@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:clean_framework/clean_framework.dart';
+
 import 'package:clean_flutter/features/details/domain/book_details_ui_output.dart';
 import 'package:clean_flutter/features/details/domain/book_details_use_case.dart';
 import 'package:clean_flutter/features/details/presentation/book_details_view_model.dart';
 import 'package:clean_flutter/providers.dart';
-import 'package:flutter/material.dart';
 
 class BookDetailsPresenter extends Presenter<BookDetailsViewModel, BookDetailsUIOutput, BookDetailsUseCase> {
   BookDetailsPresenter({
