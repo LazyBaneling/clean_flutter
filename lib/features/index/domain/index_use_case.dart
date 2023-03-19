@@ -45,7 +45,7 @@ class IndexUseCase extends UseCase<IndexEntity> {
 
   BookModel _resolveBook(BookIdentity book) {
     return BookModel(
-      title: book.title.toUpperCase(),
+      title: book.title,
       authors: book.authors,
       isbn: book.isbn,
       cover: book.cover,

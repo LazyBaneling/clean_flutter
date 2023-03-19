@@ -32,7 +32,7 @@ class BookCard extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
               title,
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context).textTheme.bodyMedium,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
